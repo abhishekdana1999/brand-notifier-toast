@@ -1,0 +1,97 @@
+/* Define default styles for snackbar */
+.snackbar {
+  position: fixed;
+  padding: 15px 20px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  z-index: 9999;
+  width: 100%; /* Default width */
+  max-width: 350px; /* Define maximum width for larger screens */
+}
+
+/* Define styles for visible snackbar */
+.snackbar--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+/* Define styles for different types of snackbars */
+.snackbar--success {
+  background-color: #4caf50;
+}
+
+.snackbar--info {
+  background-color: #2196f3;
+}
+
+.snackbar--warning {
+  background-color: #ff9800;
+}
+
+.snackbar--error {
+  background-color: #f44336;
+}
+
+.snackbar--normal {
+  background-color: #333;
+}
+
+/* Positioning */
+.snackbar--bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.snackbar--bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+.snackbar--top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.snackbar--top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.snackbar--center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Media queries for responsiveness */
+@media only screen and (min-width: 768px) {
+  /* Adjust width for tablets and laptops */
+  .snackbar {
+    width: 300px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  /* Adjust width for larger laptops and desktops */
+  .snackbar {
+    width: 350px;
+  }
+}
+
+/* Center the snackbar in mobile view */
+@media only screen and (max-width: 420px) {
+  .snackbar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    transform: translate(0,0);
+    margin: auto;
+    max-width: 90%;
+  }
+}
