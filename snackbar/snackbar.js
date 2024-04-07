@@ -1,6 +1,13 @@
 export default class Snackbar {
   constructor(apiUrl) {
-   
+    this.queue = [];
+    this.isActive = false;
+    this.toastContainer = document.querySelector('.snackbar-container');
+    this.gap = 250;
+    this.duration = 5000;
+    this.maxStacked = 5;
+    this.toastShowed = [];
+    this.currentIndex = 0;
     this.allowedWebsites = [];
     // Get the toast container from the HTML
     this.toastContainer = document.querySelector('.snackbar-container');
@@ -15,14 +22,7 @@ export default class Snackbar {
   }
 
   initializeSnackbar() {
-    this.queue = [];
-    this.isActive = false;
-    this.toastContainer = document.querySelector('.snackbar-container');
-    this.gap = 250;
-    this.duration = 5000;
-    this.maxStacked = 5;
-    this.toastShowed = [];
-    this.currentIndex = 0;
+   
 
     if (!this.toastContainer) {
       console.error('Snackbar container not found.');
