@@ -1,26 +1,39 @@
-/* Define default styles for snackbar */
+/* Define default styles for snackbar container */
+.snackbar-container {
+  z-index: 9999;
+  width: calc(100% - 40px); /* Adjust width to fit within the viewport */
+  max-width: 350px; /* Maximum width for larger screens */
+  display: flex;
+  flex-direction: column-reverse; /* Stack messages in reverse order */
+  gap: 8px;
+}
+/* Define styles for individual snackbar messages */
 .snackbar {
-  position: fixed;
   padding: 15px 20px;
   border-radius: 5px;
-  color: #fff;
   font-size: 16px;
   font-family: Arial, sans-serif;
-  transition: opacity 0.3s ease;
-  opacity: 0;
-  z-index: 9999;
-  width: 100%; /* Default width */
-  max-width: 350px; /* Define maximum width for larger screens */
+  color: #fff;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards; /* Ensure the element stays in the final state of the animation */
 }
 
-/* Define styles for visible snackbar */
+/* Apply animation for showing */
+.snackbar--fadeIn {
+  animation-name: fadeIn;
+}
+
+/* Apply animation for hiding */
+.snackbar--fadeOut {
+  animation-name: fadeOut;
+}
+
+/* Define styles for visible snackbar messages */
 .snackbar--visible {
-  opacity: 1;
   visibility: visible;
-  transform: none;
 }
 
-/* Define styles for different types of snackbars */
+/* Define styles for different types of snackbar messages */
 .snackbar--success {
   background-color: #4caf50;
 }
@@ -41,57 +54,44 @@
   background-color: #333;
 }
 
-/* Positioning */
-.snackbar--bottom-left {
-  bottom: 20px;
-  left: 20px;
-}
-
-.snackbar--bottom-right {
-  bottom: 20px;
-  right: 20px;
-}
-
-.snackbar--top-left {
-  top: 20px;
-  left: 20px;
-}
-
-.snackbar--top-right {
-  top: 20px;
-  right: 20px;
-}
-
-.snackbar--center {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 /* Media queries for responsiveness */
 @media only screen and (min-width: 768px) {
-  /* Adjust width for tablets and laptops */
-  .snackbar {
-    width: 300px;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  /* Adjust width for larger laptops and desktops */
-  .snackbar {
-    width: 350px;
-  }
-}
-
-/* Center the snackbar in mobile view */
-@media only screen and (max-width: 420px) {
-  .snackbar {
-    position: absolute;
-    left: 0;
-    right: 0;
+  /* Adjust bottom position for tablets and laptops */
+  .snackbar-container {
     bottom: 20px;
-    transform: translate(0,0);
-    margin: auto;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  /* Center the snackbar container in mobile view */
+  .snackbar-container {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
     max-width: 90%;
+  }
+}
+
+
+/* Define custom animation keyframes */
+@keyframes fadeIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
   }
 }

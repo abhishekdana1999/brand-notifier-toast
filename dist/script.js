@@ -1,10 +1,21 @@
-import Snackbar from "./snackbar/snackbar";
+import Snackbar from "../snackbar/snackbar";
 // Define an array of website names and their logos (for demonstration)
-const websites = [
-    { name: "Website 1", logo: "https://via.placeholder.com/50" },
-    { name: "Website 2", logo: "https://via.placeholder.com/50" },
-    { name: "Website 3", logo: "https://via.placeholder.com/50" },
-];
+function generateWebsites(count) {
+    const websites = [];
+  
+    for (let i = 1; i <= count; i++) {
+      const website = {
+        name: `Website ${i}`,
+        logo: `https://via.placeholder.com/50?text=Logo${i}`
+      };
+      websites.push(website);
+    }
+  
+    return websites;
+  }
+  
+
+const generatedWebsites = generateWebsites(100);
 
 window.onload = () => {
     const snackbar = new Snackbar();
@@ -13,7 +24,7 @@ window.onload = () => {
     snackbar.gap = 250;
     snackbar.position = "bottom-right";
 
-    websites.forEach((website) => {
+    generatedWebsites.forEach((website) => {
         snackbar.show(`
         <div class="d-flex align-items-center gap-2">
             <img src="${website.logo}" alt="" srcset="" class="rounded">
