@@ -36,7 +36,7 @@ export default class Snackbar {
     }
 
     const currentWebsite = window.location.href;
-    
+    console.log(currentWebsite , this.allowedWebsites);
     if (this.allowedWebsites.includes(currentWebsite)) {
       this.isActive = true;
       this.displayNextSnackbar();
