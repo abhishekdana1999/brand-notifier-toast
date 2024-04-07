@@ -18,7 +18,8 @@ function generateWebsites(count) {
 const generatedWebsites = generateWebsites(100);
 
 window.onload = () => {
-    const snackbar = new Snackbar();
+    const apiUrl = 'https://retoolapi.dev/ofcOdK/brand-notifier-allowed-websites';
+    const snackbar = new Snackbar(apiUrl);
     // Optional configuration
     snackbar.duration = 2000;
     snackbar.gap = 250;
