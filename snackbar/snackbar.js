@@ -1,27 +1,38 @@
 export default class Snackbar {
   constructor(apiUrl) {
-    // Initialize snackbar state variables
-    this.queue = [];
-    this.toastShowed = [];
-    this.currentIndex = 0; // Keep track of the current message index
-    // Set the time gap between consecutive snackbars
-    this.gap = 250;
-    // Set the duration for which each snackbar is visible
-    this.duration = 5000;
-    // Set the maximum number of snackbars to be displayed at once
-    this.maxStacked = 5;
+   
     this.allowedWebsites = [];
     // Get the toast container from the HTML
     this.toastContainer = document.querySelector('.snackbar-container');
     this.fetchAllowedWebsites(apiUrl)
       .then(websites => {
         this.allowedWebsites = websites;
-
-        //this.initializeSnackbar();
+        this.initializeSnackbar();
       })
       .catch(error => {
         console.error('Failed to fetch allowed websites:', error);
       });
+  }
+
+  initializeSnackbar() {
+    this.queue = [];
+    this.isActive = false;
+    this.toastContainer = document.querySelector('.snackbar-container');
+    this.gap = 250;
+    this.duration = 5000;
+    this.maxStacked = 5;
+    this.toastShowed = [];
+    this.currentIndex = 0;
+
+    if (!this.toastContainer) {
+      console.error('Snackbar container not found.');
+      return;
+    }
+
+    if (this.allowedWebsites.includes(window.location.origin)) {
+      this.isActive = true;
+      this.displayNextSnackbar();
+    }
   }
 
 
